@@ -18,12 +18,14 @@ export function ApplicationToolbar() {
     setAnchorEl(null);
   };
 
+  const date = Date.now();
+
   return (
     <MUI.AppBar position="sticky" variant="outlined">
       <MUI.Toolbar variant="dense">
         <MUI.Stack direction="row" gap={1} alignItems="center" flexBasis="100%" justifyContent="space-between">
           <MUI.Typography variant="h6" component="div">
-            <MUI.Link component={Link} href="/" color="inherit" underline="none">
+            <MUI.Link component={Link} href={`/?t=${date}`} color="inherit" underline="none">
               Social Cards
             </MUI.Link>
           </MUI.Typography>
@@ -32,10 +34,10 @@ export function ApplicationToolbar() {
               Pages
             </MUI.Button>
             <MUI.Menu id="basic-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-              <MUI.MenuItem component={Link} href="/twitter-app">
+              <MUI.MenuItem component={Link} href={`/twitter-app?t=${date}`}>
                 Twitter App
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href="/twitter-summary-large">
+              <MUI.MenuItem component={Link} href={`/twitter-summary-large?t=${date}`}>
                 Twitter Summary Large
               </MUI.MenuItem>
             </MUI.Menu>

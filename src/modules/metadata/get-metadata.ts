@@ -7,8 +7,8 @@ interface GetMetadataParams {
 
 function getImage(alt: string) {
   return {
-    url: 'https://mui.com/static/images/cards/paella.jpg',
-    secureUrl: 'https://mui.com/static/images/cards/paella.jpg',
+    url: 'https://mui.com/static/images/cards/contemplative-reptile.jpg',
+    secureUrl: 'https://mui.com/static/images/cards/contemplative-reptile.jpg',
     type: 'image/jpeg',
     width: 690,
     height: 388,

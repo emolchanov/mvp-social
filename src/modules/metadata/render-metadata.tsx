@@ -4,7 +4,7 @@ import * as MUI from '@mui/material';
 
 export function RenderMetadata(props: { metadata: Metadata }) {
   return (
-    <MUI.Paper variant="outlined" sx={{ px: 5 }}>
+    <MUI.Paper variant="outlined" sx={{ px: 5, maxWidth: '80vw', overflow: 'scroll' }}>
       <pre>{JSON.stringify(props.metadata, null, 2)}</pre>
     </MUI.Paper>
   );

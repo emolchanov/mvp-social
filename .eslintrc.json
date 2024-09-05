@@ -1,0 +1,82 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:import/recommended",
+    "plugin:import/typescript" /** the following line do the trick */,
+    "prettier"
+  ],
+  "plugins": ["check-file", "import", "prettier"],
+  "settings": {
+    "import/resolver": {
+      "node": true,
+      "typescript": true
+    }
+  },
+  "rules": {
+    // check-file (checks the foldername and filename)
+    "check-file/filename-blocklist": [
+      "error",
+      {
+        "**/*.spec.{ts,tsx}": "[file-folder]/[file-name].test.{ts,tsx}"
+      }
+    ],
+    "check-file/folder-match-with-fex": [
+      "error",
+      {
+        "*.test.{ts,tsx}": "src/**/",
+        "*.styled.{ts,tsx}": "src/**/"
+      }
+    ],
+    "check-file/folder-naming-convention": [
+      "error",
+      {
+        "src/!(app|edge)/**/": "KEBAB_CASE",
+        "src/app/**/": "NEXT_JS_APP_ROUTER_CASE",
+        "src/edge/**/": "CAMEL_CASE"
+      }
+    ],
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "src/!(edge)/**/*.{ts,tsx}": "KEBAB_CASE",
+        "src/edge/!(scenes|widgets)/**/*.ts": "CAMEL_CASE",
+        "src/edge/(scenes|widgets)/**/*.config.ts": "PASCAL_CASE"
+      },
+      { "ignoreMiddleExtensions": true }
+    ],
+
+    // import rules
+    "import/no-cycle": "error",
+    "import/no-unresolved": "error",
+    "import/no-default-export": "error",
+
+    // react
+    "react/prop-types": "off",
+
+    // prettier
+    "prettier/prettier": "warn"
+  },
+  "overrides": [
+    {
+      "files": [
+        // allows `default` export for:
+        // 1. `Next.js` config file and specific files in the "App Router" folder
+        "next.config.mjs",
+        "src/app/**/{layout,template,page,loading,error,global-error,not-found}.tsx",
+        // 2. `Edge Config` specific files in the "edge" folder
+        "src/edge/widgetDefaults.ts",
+        "src/edge/{scenes,widgets}/**/*.config.ts"
+      ],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    },
+    {
+      // allows named import as default: "import styled from 'styled-components'" because of error with `next.js`
+      "files": ["src/**/*.styled.{ts,tsx}"],
+      "rules": {
+        "import/no-named-as-default": "off"
+      }
+    }
+  ]
+}

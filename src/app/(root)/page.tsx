@@ -18,7 +18,7 @@ type PageProps = {
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  return getMetadata({ variant: 'summary' });
+  return getMetadata({ variant: 'summary', pathname: '/' });
 }
 
 export default async function Page({ searchParams }: PageProps) {
@@ -30,7 +30,7 @@ export default async function Page({ searchParams }: PageProps) {
       <ApplicationToolbar />
       <PageContent>
         <ProductCard />
-        <RenderMetadata metadata={getMetadata({ variant: 'summary' })} />
+        <RenderMetadata metadata={getMetadata({ variant: 'summary', pathname: '/' })} />
       </PageContent>
     </HydrationBoundary>
   );

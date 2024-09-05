@@ -5,10 +5,9 @@ import type { Metadata } from 'next';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
 import { ApplicationToolbar } from '@/modules/application-toolbar';
-import { getMetadata, RenderMetadata } from '@/modules/metadata';
+import { getMetadata } from '@/modules/metadata';
 
 import { PageContent } from '@/shared/components/page-content';
-import { ProductCard } from '@/shared/components/product-card';
 import { getAppQueryClient } from '@/shared/modules/swr';
 
 type PageProps = {
@@ -18,7 +17,7 @@ type PageProps = {
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  return getMetadata({ variant: 'summary' });
+  return getMetadata({ variant: 'summary', pathname: '/' });
 }
 
 export default function NotFound() {

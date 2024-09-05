@@ -3,6 +3,7 @@ import type { ResolvedTwitterMetadata } from 'next/dist/lib/metadata/types/twitt
 
 interface GetMetadataParams {
   variant: ResolvedTwitterMetadata['card'];
+  pathname: string;
 }
 
 function getImage(alt: string) {
@@ -25,7 +26,7 @@ export function getMetadata(params: GetMetadataParams): Metadata {
       description: `MVP-og-description-${params.variant}`,
       siteName: `MVP-site-name-${params.variant}`,
       type: 'website',
-      url: `https://${process.env.DOMAIN ?? 'local'}`,
+      url: `https://${process.env.DOMAIN ?? 'local'}${params.pathname}`,
       locale: 'en',
       determiner: 'auto',
       images: [getImage(`MVP-og-image-alt-${params.variant}`)],

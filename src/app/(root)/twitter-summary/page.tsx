@@ -18,7 +18,7 @@ type PageProps = {
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  return getMetadata({ variant: 'summary_large_image', pathname: 'twitter-summary-large' });
+  return getMetadata({ variant: 'summary', pathname: 'twitter-summary' });
 }
 
 export default async function Page({ searchParams }: PageProps) {
@@ -30,7 +30,7 @@ export default async function Page({ searchParams }: PageProps) {
       <ApplicationToolbar />
       <PageContent>
         <ProductCard />
-        <RenderMetadata metadata={getMetadata({ variant: 'summary_large_image', pathname: 'twitter-summary-large' })} />
+        <RenderMetadata metadata={getMetadata({ variant: 'summary', pathname: 'twitter-summary' })} />
       </PageContent>
     </HydrationBoundary>
   );

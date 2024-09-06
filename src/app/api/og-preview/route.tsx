@@ -14,11 +14,8 @@ export async function GET(request: NextRequest) {
       <div
         style={{
           display: 'flex',
-          background:
-            'url("https://images.unsplash.com/photo-1521706862577-47b053587f91?q=80&w=900&auto=format&fit=cover&blur=80")',
           width: '100%',
           height: '100%',
-          padding: 50,
           textAlign: 'center',
           justifyContent: 'center',
           alignItems: 'center',
@@ -27,6 +24,16 @@ export async function GET(request: NextRequest) {
           gap: 40,
         }}
       >
+        <div style={{ display: 'flex', position: 'absolute', filter: 'blur(20px)', width: '100%', height: '100%' }}>
+          <div
+            style={{
+              display: 'flex',
+              background: `url(${iconUrl}) no-repeat center`,
+              width: '100%',
+              height: '100%',
+            }}
+          />
+        </div>
         <img
           src={iconUrl}
           style={{

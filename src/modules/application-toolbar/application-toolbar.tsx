@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 import * as MUI from '@mui/material';
 
-const timestamp = process.env.NEXT_PUBLIC_HASH ?? 'dev';
+const timestamp = process.env.RUNTIME_HASH ?? process.env.NEXT_PUBLIC_HASH ?? 'dev';
 
 export function ApplicationToolbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

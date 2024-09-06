@@ -9,7 +9,7 @@ interface ProductCardProps {
   pathname: string;
 }
 
-const timestamp = process.env.NEXT_PUBLIC_HASH ?? 'dev';
+const timestamp = process.env.RUNTIME_HASH ?? process.env.NEXT_PUBLIC_HASH ?? 'dev';
 
 export function ProductCard(props: ProductCardProps) {
   const onClick = () => navigator.clipboard.writeText(window.location.origin + props.pathname + `?t=${timestamp}`);

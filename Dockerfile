@@ -57,9 +57,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/next.config.mjs ./next.config.mjs
 ARG NODE_ENV
 ENV NODE_ENV=${NODE_ENV}
 
-ARG NEXT_PUBLIC_HASH
-ENV NEXT_PUBLIC_HASH=${NEXT_PUBLIC_HASH}
-
 # Uncomment the following line to disable telemetry at run time
 ENV NEXT_TELEMETRY_DISABLED 1
 

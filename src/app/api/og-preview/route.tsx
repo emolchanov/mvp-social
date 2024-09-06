@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og';
-import type { NextRequest } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'edge';
@@ -8,7 +8,12 @@ export const runtime = 'edge';
 export async function GET(request: NextRequest) {
   const title = request.nextUrl.searchParams.get('title');
   const content = request.nextUrl.searchParams.get('content');
-  const iconUrl = request.nextUrl.searchParams.get('icon') ?? '#';
+  const iconUrl = request.nextUrl.searchParams.get('icon');
+
+  if (!iconUrl || !title || !content) {
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+
   return new ImageResponse(
     (
       <div

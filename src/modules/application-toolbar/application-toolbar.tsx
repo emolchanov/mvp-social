@@ -37,8 +37,8 @@ export function ApplicationToolbar() {
               <MUI.MenuItem component={Link} href={`/twitter-app?t=${date}`}>
                 Twitter App
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/twitter-summary-large?t=${date}`}>
-                Twitter Summary Large
+              <MUI.MenuItem component={Link} href={`/twitter-summary?t=${date}`}>
+                Twitter Summary
               </MUI.MenuItem>
             </MUI.Menu>
           </MUI.Stack>

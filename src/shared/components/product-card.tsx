@@ -9,7 +9,6 @@ interface ProductCardProps {
   pathname: string;
 }
 
-
 export function ProductCard(props: ProductCardProps) {
   const onClick = () => navigator.clipboard.writeText(window.location.origin + props.pathname);
   return (

@@ -4,7 +4,6 @@ import type { NextRequest } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'edge';
-export const contentType = 'image/png';
 
 export async function GET(request: NextRequest) {
   const title = request.nextUrl.searchParams.get('title');

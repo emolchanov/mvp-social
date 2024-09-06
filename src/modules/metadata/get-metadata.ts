@@ -10,8 +10,8 @@ const content = `Lizards are a widespread group of squamate reptiles, with over 
 
 function getImage(alt: string) {
   return {
-    url: `/api/og-preview?content=${encodeURIComponent(alt + content)}`,
-    secureUrl: `/api/og-preview?content=${encodeURIComponent(alt + content)}`,
+    url: `${process.env.DOMAIN ? `https://${process.env.DOMAIN}/` : '/'}api/og-preview?content=${encodeURIComponent(alt + content)}`,
+    secureUrl: `${process.env.DOMAIN ? `https://${process.env.DOMAIN}/` : '/'}api/og-preview?content=${encodeURIComponent(alt + content)}`,
     type: 'image/jpeg',
     width: 690,
     height: 388,

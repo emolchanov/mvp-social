@@ -6,10 +6,12 @@ interface GetMetadataParams {
   pathname: string;
 }
 
+const content = `Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica`;
+
 function getImage(alt: string) {
   return {
-    url: `/api/og-preview?title=${encodeURIComponent('Lizard ' + alt)}`,
-    secureUrl: `/api/og-preview?title=${encodeURIComponent('Lizard ' + alt)}`,
+    url: `/api/og-preview?content=${encodeURIComponent(alt + content)}`,
+    secureUrl: `/api/og-preview?content=${encodeURIComponent(alt + content)}`,
     type: 'image/jpeg',
     width: 690,
     height: 388,

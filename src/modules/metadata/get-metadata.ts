@@ -7,15 +7,15 @@ interface GetMetadataParams {
   description: string;
   image: string;
   pathname: string;
+  hash: string;
 }
 
-const BASE_URL = process.env.DOMAIN ? `https://${process.env.DOMAIN}` : '';
+const BASE_URL = process.env.PRIMARY_DOMAIN ? `https://${process.env.PRIMARY_DOMAIN}` : '';
 
-function getImage(params: { title: string; description: string; icon: string }) {
-  const timestamp = process.env.RUNTIME_HASH ?? process.env.NEXT_PUBLIC_HASH ?? Date.now();
+function getImage(params: { title: string; description: string; icon: string; hash: string }) {
   return {
-    url: `${BASE_URL}/api/og-preview?t=${timestamp}&title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}`,
-    secureUrl: `${BASE_URL}/api/og-preview?t=${timestamp}&title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}`,
+    url: `${BASE_URL}/api/og-preview?t=${params.hash}&title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}`,
+    secureUrl: `${BASE_URL}/api/og-preview?t=${params.hash}&title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}`,
     type: 'image/jpeg',
     width: 843,
     height: 441,
@@ -38,7 +38,7 @@ export function getMetadata(params: GetMetadataParams): Metadata {
       determiner: 'auto',
       siteName: 'mvp-social',
       url: `${BASE_URL}${params.pathname}`,
-      images: getImage({ title, description, icon: params.image }),
+      images: getImage({ title, description, icon: params.image, hash: params.hash }),
     },
     facebook: {
       appId: `${process.env.FB_APP_ID}`,
@@ -66,7 +66,7 @@ export function getMetadata(params: GetMetadataParams): Metadata {
             description,
             site: '@jackxsim',
             creator: '@jackxsim',
-            images: getImage({ title, description, icon: params.image }),
+            images: getImage({ title, description, icon: params.image, hash: params.hash }),
           },
   };
 }

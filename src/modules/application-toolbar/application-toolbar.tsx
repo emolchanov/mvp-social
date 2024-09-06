@@ -6,9 +6,7 @@ import Link from 'next/link';
 
 import * as MUI from '@mui/material';
 
-const timestamp = process.env.RUNTIME_HASH ?? process.env.NEXT_PUBLIC_HASH ?? 'dev';
-
-export function ApplicationToolbar() {
+export function ApplicationToolbar(props: { hash: string }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -25,7 +23,7 @@ export function ApplicationToolbar() {
       <MUI.Toolbar variant="dense">
         <MUI.Stack direction="row" gap={1} alignItems="center" flexBasis="100%" justifyContent="space-between">
           <MUI.Typography variant="h6" component="div">
-            <MUI.Link component={Link} href={`/?t=${timestamp}`} color="inherit" underline="none">
+            <MUI.Link component={Link} href={`/?t=${props.hash}`} color="inherit" underline="none">
               Social Cards
             </MUI.Link>
           </MUI.Typography>
@@ -34,16 +32,16 @@ export function ApplicationToolbar() {
               Pages
             </MUI.Button>
             <MUI.Menu id="basic-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-              <MUI.MenuItem component={Link} href={`/lizard?t=${timestamp}`}>
+              <MUI.MenuItem component={Link} href={`/lizard?t=${props.hash}`}>
                 Lizard
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/horse?t=${timestamp}`}>
+              <MUI.MenuItem component={Link} href={`/horse?t=${props.hash}`}>
                 Horse
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/twitter-app?t=${timestamp}`}>
+              <MUI.MenuItem component={Link} href={`/twitter-app?t=${props.hash}`}>
                 Twitter App
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/twitter-summary?t=${timestamp}`}>
+              <MUI.MenuItem component={Link} href={`/twitter-summary?t=${props.hash}`}>
                 Twitter Summary
               </MUI.MenuItem>
             </MUI.Menu>

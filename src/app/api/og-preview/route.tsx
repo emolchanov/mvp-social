@@ -24,7 +24,15 @@ export async function GET(request: NextRequest) {
           gap: 40,
         }}
       >
-        <div style={{ display: 'flex', position: 'absolute', filter: 'blur(20px)', width: '100%', height: '100%' }}>
+        <div
+          style={{
+            display: 'flex',
+            position: 'absolute',
+            filter: 'blur(20px) brightness(50%)',
+            width: '100%',
+            height: '100%',
+          }}
+        >
           <div
             style={{
               display: 'flex',

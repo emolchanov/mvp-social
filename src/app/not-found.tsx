@@ -17,7 +17,13 @@ type PageProps = {
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  return getMetadata({ variant: 'summary', pathname: '/' });
+  return getMetadata({
+    variant: 'summary',
+    pathname: '/',
+    title: '404',
+    description: 'Not found',
+    image: 'https://images.unsplash.com/photo-1618044619888-009e412ff12a?q=80&w=2371&auto=format&fit=cover',
+  });
 }
 
 export default function NotFound() {

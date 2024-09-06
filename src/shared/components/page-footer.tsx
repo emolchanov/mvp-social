@@ -16,7 +16,10 @@ export function PageFooter(props: PropsWithChildren) {
         gap={10}
         marginBlock={10}
       >
-        {props.children}
+        <MUI.Accordion sx={{ maxWidth: '100%' }} variant="outlined">
+          <MUI.AccordionSummary>View metadata</MUI.AccordionSummary>
+          <MUI.AccordionDetails>{props.children}</MUI.AccordionDetails>
+        </MUI.Accordion>
       </MUI.Stack>
     </MUI.Container>
   );

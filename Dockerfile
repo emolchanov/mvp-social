@@ -14,9 +14,11 @@ RUN \
   fi
 
 
-ARG NODE_ENV=production
+ARG NODE_ENV
 ENV NODE_ENV=${NODE_ENV}
-ENV GIT_COMMIT=${GIT_COMMIT}
+
+ARG NEXT_PUBLIC_HASH
+ENV NEXT_PUBLIC_HASH=${NEXT_PUBLIC_HASH}
 
 # Environment variables must be present at build time
 # https://github.com/vercel/next.js/discussions/14030
@@ -52,9 +54,11 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/next.config.mjs ./next.config.mjs
 
 # Environment variables must be redefined at run time
-ARG NODE_ENV=production
+ARG NODE_ENV
 ENV NODE_ENV=${NODE_ENV}
-ENV GIT_COMMIT=${GIT_COMMIT}
+
+ARG NEXT_PUBLIC_HASH
+ENV NEXT_PUBLIC_HASH=${NEXT_PUBLIC_HASH}
 
 # Uncomment the following line to disable telemetry at run time
 ENV NEXT_TELEMETRY_DISABLED 1

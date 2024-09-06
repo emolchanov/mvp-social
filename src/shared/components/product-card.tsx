@@ -10,7 +10,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard(props: ProductCardProps) {
-  const onClick = () => navigator.clipboard.writeText(window.location.origin + props.pathname);
+  const onClick = () => navigator.clipboard.writeText(window.location.origin + props.pathname + `?t=${Date.now()}`);
   return (
     <MUI.Card sx={{ maxWidth: 345 }} variant="outlined">
       <MUI.CardMedia component="img" alt="green iguana" height="140" image={props.image} />

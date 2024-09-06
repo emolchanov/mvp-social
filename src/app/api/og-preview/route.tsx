@@ -13,7 +13,8 @@ export async function GET(request: NextRequest) {
       <div
         style={{
           display: 'flex',
-          background: 'radial-gradient(circle, rgba(0,143,96,1) 0%, rgba(3,57,19,1) 74%, rgba(0,29,0,1) 100%)',
+          background: 'url("https://images.unsplash.com/photo-1521706862577-47b053587f91?q=80&w=900&auto=format&fit=cover&blur=80")',
+          // background: 'radial-gradient(circle, rgba(0,143,96,1) 0%, rgba(3,57,19,1) 74%, rgba(0,29,0,1) 100%)',
           width: '100%',
           height: '100%',
           padding: 50,

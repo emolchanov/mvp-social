@@ -1,4 +1,5 @@
 export const HOME_DATA = {
+  pathname: '/',
   title: 'Animals',
   description:
     'Animals are a diverse group of living organisms characterized by their ability to move, consume organic matter for energy, and respond to their environment.',

@@ -18,15 +18,8 @@ type PageProps = {
 
 export const dynamic = 'force-dynamic';
 
-const MetaDataConfig = {
-  pathname: '/lizard',
-  title: LIZARD_DATA.title,
-  description: LIZARD_DATA.description,
-  image: LIZARD_DATA.image,
-};
-
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  return getMetadata({ variant: 'summary_large_image', ...MetaDataConfig });
+  return getMetadata({ variant: 'summary_large_image', ...LIZARD_DATA });
 }
 
 export default async function Page({ searchParams }: PageProps) {
@@ -37,8 +30,8 @@ export default async function Page({ searchParams }: PageProps) {
     <HydrationBoundary state={dehydratedState}>
       <ApplicationToolbar />
       <PageContent>
-        <ProductCard {...LIZARD_DATA}/>
-        <RenderMetadata metadata={getMetadata({ variant: 'summary_large_image', ...MetaDataConfig })} />
+        <ProductCard {...LIZARD_DATA} />
+        <RenderMetadata metadata={getMetadata({ variant: 'summary_large_image', ...LIZARD_DATA })} />
       </PageContent>
     </HydrationBoundary>
   );

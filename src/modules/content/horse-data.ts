@@ -1,4 +1,5 @@
 export const HORSE_DATA = {
+  pathname: '/horse',
   image: 'https://images.unsplash.com/photo-1511195188569-9b97074ae1b1?q=80&w=1200&auto=format&fit=cover',
   title: 'Horse',
   description:

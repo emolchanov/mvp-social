@@ -19,15 +19,8 @@ type PageProps = {
 
 export const dynamic = 'force-dynamic';
 
-const MetaDataConfig = {
-  pathname: '/',
-  title: HOME_DATA.title,
-  description: HOME_DATA.description,
-  image: HOME_DATA.image,
-};
-
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  return getMetadata({ variant: 'summary_large_image', ...MetaDataConfig });
+  return getMetadata({ variant: 'summary_large_image', ...HOME_DATA });
 }
 
 export default async function Page({ searchParams }: PageProps) {
@@ -42,7 +35,7 @@ export default async function Page({ searchParams }: PageProps) {
         <ProductCard {...HORSE_DATA} />
       </PageContent>
       <PageFooter>
-        <RenderMetadata metadata={getMetadata({ variant: 'summary_large_image', ...MetaDataConfig })} />
+        <RenderMetadata metadata={getMetadata({ variant: 'summary_large_image', ...HOME_DATA })} />
       </PageFooter>
     </HydrationBoundary>
   );

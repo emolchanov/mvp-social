@@ -6,9 +6,11 @@ interface ProductCardProps {
   title: string;
   description: string;
   image: string;
+  pathname: string;
 }
 
 export function ProductCard(props: ProductCardProps) {
+  const onClick = () => navigator.clipboard.writeText(window.location.origin + props.pathname);
   return (
     <MUI.Card sx={{ maxWidth: 345 }} variant="outlined">
       <MUI.CardMedia component="img" alt="green iguana" height="140" image={props.image} />
@@ -20,6 +22,9 @@ export function ProductCard(props: ProductCardProps) {
           {props.description}
         </MUI.Typography>
       </MUI.CardContent>
+      <MUI.CardActions>
+        <MUI.Button onClick={onClick}>Copy link</MUI.Button>
+      </MUI.CardActions>
     </MUI.Card>
   );
 }

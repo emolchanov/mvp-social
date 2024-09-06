@@ -7,7 +7,6 @@ import Link from 'next/link';
 import * as MUI from '@mui/material';
 
 export function ApplicationToolbar() {
-  const [timestamp, setTimestamp] = useState<number | null>(null);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -19,16 +18,12 @@ export function ApplicationToolbar() {
     setAnchorEl(null);
   };
 
-  useEffect(() => {
-    setTimestamp(Date.now());
-  }, []);
-
   return (
     <MUI.AppBar position="sticky" variant="outlined">
       <MUI.Toolbar variant="dense">
         <MUI.Stack direction="row" gap={1} alignItems="center" flexBasis="100%" justifyContent="space-between">
           <MUI.Typography variant="h6" component="div">
-            <MUI.Link component={Link} href={`/?t=${timestamp}`} color="inherit" underline="none">
+            <MUI.Link component={Link} href={`/`} color="inherit" underline="none">
               Social Cards
             </MUI.Link>
           </MUI.Typography>
@@ -37,16 +32,16 @@ export function ApplicationToolbar() {
               Pages
             </MUI.Button>
             <MUI.Menu id="basic-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-              <MUI.MenuItem component={Link} href={`/lizard?t=${timestamp}`}>
+              <MUI.MenuItem component={Link} href={`/lizard`}>
                 Lizard
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/horse?t=${timestamp}`}>
+              <MUI.MenuItem component={Link} href={`/horse`}>
                 Horse
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/twitter-app?t=${timestamp}`}>
+              <MUI.MenuItem component={Link} href={`/twitter-app`}>
                 Twitter App
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/twitter-summary?t=${timestamp}`}>
+              <MUI.MenuItem component={Link} href={`/twitter-summary`}>
                 Twitter Summary
               </MUI.MenuItem>
             </MUI.Menu>

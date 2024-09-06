@@ -12,9 +12,10 @@ interface GetMetadataParams {
 const BASE_URL = process.env.DOMAIN ? `https://${process.env.DOMAIN}` : '';
 
 function getImage(params: { title: string; description: string; icon: string }) {
+  const time = Date.now();
   return {
-    url: `${BASE_URL}/api/og-preview?title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}`,
-    secureUrl: `${BASE_URL}/api/og-preview?title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}`,
+    url: `${BASE_URL}/api/og-preview?title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}&t=${time}`,
+    secureUrl: `${BASE_URL}/api/og-preview?title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}&t=${time}`,
     type: 'image/jpeg',
     width: 843,
     height: 441,

@@ -9,6 +9,7 @@ import { HORSE_DATA } from '@/modules/content';
 import { getMetadata, RenderMetadata } from '@/modules/metadata';
 
 import { PageContent } from '@/shared/components/page-content';
+import { PageFooter } from '@/shared/components/page-footer';
 import { ProductCard } from '@/shared/components/product-card';
 import { getAppQueryClient } from '@/shared/modules/swr';
 
@@ -31,8 +32,10 @@ export default async function Page({ searchParams }: PageProps) {
       <ApplicationToolbar />
       <PageContent>
         <ProductCard {...HORSE_DATA} />
-        <RenderMetadata metadata={getMetadata({ variant: 'summary_large_image', ...HORSE_DATA })} />
       </PageContent>
+      <PageFooter>
+        <RenderMetadata metadata={getMetadata({ variant: 'summary_large_image', ...HORSE_DATA })} />
+      </PageFooter>
     </HydrationBoundary>
   );
 }

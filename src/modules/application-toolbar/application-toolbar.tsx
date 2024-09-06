@@ -1,10 +1,12 @@
 'use client';
 
-import { type MouseEvent, useEffect, useState } from 'react';
+import { type MouseEvent, useState } from 'react';
 
 import Link from 'next/link';
 
 import * as MUI from '@mui/material';
+
+const timestamp = process.env.GIT_COMMIT ?? 'dev';
 
 export function ApplicationToolbar() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -23,7 +25,7 @@ export function ApplicationToolbar() {
       <MUI.Toolbar variant="dense">
         <MUI.Stack direction="row" gap={1} alignItems="center" flexBasis="100%" justifyContent="space-between">
           <MUI.Typography variant="h6" component="div">
-            <MUI.Link component={Link} href={`/`} color="inherit" underline="none">
+            <MUI.Link component={Link} href={`/?t=${timestamp}`} color="inherit" underline="none">
               Social Cards
             </MUI.Link>
           </MUI.Typography>
@@ -32,16 +34,16 @@ export function ApplicationToolbar() {
               Pages
             </MUI.Button>
             <MUI.Menu id="basic-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-              <MUI.MenuItem component={Link} href={`/lizard`}>
+              <MUI.MenuItem component={Link} href={`/lizard?t=${timestamp}`}>
                 Lizard
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/horse`}>
+              <MUI.MenuItem component={Link} href={`/horse?t=${timestamp}`}>
                 Horse
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/twitter-app`}>
+              <MUI.MenuItem component={Link} href={`/twitter-app?t=${timestamp}`}>
                 Twitter App
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/twitter-summary`}>
+              <MUI.MenuItem component={Link} href={`/twitter-summary?t=${timestamp}`}>
                 Twitter Summary
               </MUI.MenuItem>
             </MUI.Menu>

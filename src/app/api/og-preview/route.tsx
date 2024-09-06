@@ -3,7 +3,9 @@ import { ImageResponse } from 'next/og';
 import { type NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
-export const runtime = 'edge';
+export const runtime = 'nodejs';
+export const revalidate = 0;
+export const maxDuration = 5;
 
 export async function GET(request: NextRequest) {
   const title = request.nextUrl.searchParams.get('title');

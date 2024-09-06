@@ -9,8 +9,10 @@ interface ProductCardProps {
   pathname: string;
 }
 
+const timestamp = process.env.GIT_COMMIT ?? 'dev';
+
 export function ProductCard(props: ProductCardProps) {
-  const onClick = () => navigator.clipboard.writeText(window.location.origin + props.pathname);
+  const onClick = () => navigator.clipboard.writeText(window.location.origin + props.pathname + `?t=${timestamp}`);
   return (
     <MUI.Card sx={{ maxWidth: 345 }} variant="outlined">
       <MUI.CardMedia component="img" alt="green iguana" height="140" image={props.image} />

@@ -3,45 +3,50 @@ import type { ResolvedTwitterMetadata } from 'next/dist/lib/metadata/types/twitt
 
 interface GetMetadataParams {
   variant: ResolvedTwitterMetadata['card'];
+  title: string;
+  description: string;
+  image: string;
   pathname: string;
 }
 
-const content = `Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica`;
+const BASE_URL = process.env.DOMAIN ? `https://${process.env.DOMAIN}` : '';
 
-function getImage(alt: string) {
+function getImage(params: { title: string; description: string; icon: string }) {
   return {
-    url: `${process.env.DOMAIN ? `https://${process.env.DOMAIN}/` : '/'}api/og-preview?content=${encodeURIComponent(alt + content)}`,
-    secureUrl: `${process.env.DOMAIN ? `https://${process.env.DOMAIN}/` : '/'}api/og-preview?content=${encodeURIComponent(alt + content)}`,
+    url: `${BASE_URL}/api/og-preview?title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}`,
+    secureUrl: `${BASE_URL}/api/og-preview?title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}`,
     type: 'image/jpeg',
-    width: 690,
-    height: 388,
-    alt,
+    width: 843,
+    height: 441,
+    alt: `${params.title}: ${params.description.slice(0, 25)}`,
   };
 }
 
 export function getMetadata(params: GetMetadataParams): Metadata {
+  const variant = params.variant ?? 'summary_large_image';
+  const title = params.title ?? 'Title';
+  const description = params.description ?? 'Description';
   return {
-    title: `MVP-title-${params.variant}`,
-    description: `MVP-description-${params.variant}`,
+    title,
+    description,
     openGraph: {
-      title: `MVP-og-title-${params.variant}`,
-      description: `MVP-og-description-${params.variant}`,
-      siteName: `MVP-site-name-${params.variant}`,
-      type: 'website',
-      url: `https://${process.env.DOMAIN ?? 'local'}${params.pathname}`,
+      title,
+      description,
       locale: 'en',
+      type: 'website',
       determiner: 'auto',
-      images: [getImage(`MVP-og-image-alt-${params.variant}`)],
+      siteName: 'mvp-social',
+      url: `${BASE_URL}${params.pathname}`,
+      images: getImage({ title, description, icon: params.image }),
     },
     facebook: {
       appId: `${process.env.FB_APP_ID}`,
     },
     twitter:
-      params.variant === 'app'
+      variant === 'app'
         ? {
-            card: params.variant,
+            card: variant,
             app: {
-              name: `MVP-twitter-${params.variant}-title`,
               id: {
                 ipad: process.env.APPLE_APP_ID,
                 iphone: process.env.APPLE_APP_ID,
@@ -55,12 +60,12 @@ export function getMetadata(params: GetMetadataParams): Metadata {
             },
           }
         : {
-            card: params.variant,
-            title: `MVP-twitter-${params.variant}-title`,
-            description: `MVP-twitter-${params.variant}-description`,
+            card: variant,
+            title,
+            description,
             site: '@jackxsim',
             creator: '@jackxsim',
-            images: [getImage(`MVP-twitter-${params.variant}-image-alt`)],
+            images: getImage({ title, description, icon: params.image }),
           },
   };
 }

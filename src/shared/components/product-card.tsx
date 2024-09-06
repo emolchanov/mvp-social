@@ -2,22 +2,22 @@
 
 import * as MUI from '@mui/material';
 
-export function ProductCard() {
+interface ProductCardProps {
+  title: string;
+  description: string;
+  image: string;
+}
+
+export function ProductCard(props: ProductCardProps) {
   return (
     <MUI.Card sx={{ maxWidth: 345 }} variant="outlined">
-      <MUI.CardMedia
-        component="img"
-        alt="green iguana"
-        height="140"
-        image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-      />
+      <MUI.CardMedia component="img" alt="green iguana" height="140" image={props.image} />
       <MUI.CardContent>
         <MUI.Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {props.title}
         </MUI.Typography>
         <MUI.Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents
-          except Antarctica
+          {props.description}
         </MUI.Typography>
       </MUI.CardContent>
     </MUI.Card>

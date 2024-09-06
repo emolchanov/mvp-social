@@ -1,12 +1,13 @@
 'use client';
 
-import { type MouseEvent, useState } from 'react';
+import { type MouseEvent, useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
 import * as MUI from '@mui/material';
 
 export function ApplicationToolbar() {
+  const [timestamp, setTimestamp] = useState<number | null>(null);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -18,14 +19,16 @@ export function ApplicationToolbar() {
     setAnchorEl(null);
   };
 
-  const date = Date.now();
+  useEffect(() => {
+    setTimestamp(Date.now());
+  }, []);
 
   return (
     <MUI.AppBar position="sticky" variant="outlined">
       <MUI.Toolbar variant="dense">
         <MUI.Stack direction="row" gap={1} alignItems="center" flexBasis="100%" justifyContent="space-between">
           <MUI.Typography variant="h6" component="div">
-            <MUI.Link component={Link} href={`/?t=${date}`} color="inherit" underline="none">
+            <MUI.Link component={Link} href={`/?t=${timestamp}`} color="inherit" underline="none">
               Social Cards
             </MUI.Link>
           </MUI.Typography>
@@ -34,10 +37,16 @@ export function ApplicationToolbar() {
               Pages
             </MUI.Button>
             <MUI.Menu id="basic-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
-              <MUI.MenuItem component={Link} href={`/twitter-app?t=${date}`}>
+              <MUI.MenuItem component={Link} href={`/lizard?t=${timestamp}`}>
+                Lizard
+              </MUI.MenuItem>
+              <MUI.MenuItem component={Link} href={`/horse?t=${timestamp}`}>
+                Horse
+              </MUI.MenuItem>
+              <MUI.MenuItem component={Link} href={`/twitter-app?t=${timestamp}`}>
                 Twitter App
               </MUI.MenuItem>
-              <MUI.MenuItem component={Link} href={`/twitter-summary?t=${date}`}>
+              <MUI.MenuItem component={Link} href={`/twitter-summary?t=${timestamp}`}>
                 Twitter Summary
               </MUI.MenuItem>
             </MUI.Menu>

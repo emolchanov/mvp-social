@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
 import { ApplicationToolbar } from '@/modules/application-toolbar';
+import { LIZARD_DATA } from '@/modules/content';
 import { getMetadata, RenderMetadata } from '@/modules/metadata';
 
 import { PageContent } from '@/shared/components/page-content';
@@ -17,8 +18,15 @@ type PageProps = {
 
 export const dynamic = 'force-dynamic';
 
+const MetaDataConfig = {
+  pathname: '/twitter-app',
+  title: LIZARD_DATA.title,
+  description: LIZARD_DATA.description,
+  image: LIZARD_DATA.image,
+};
+
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  return getMetadata({ variant: 'app', pathname: 'twitter-app' });
+  return getMetadata({ variant: 'app', ...MetaDataConfig });
 }
 
 export default async function Page({ searchParams }: PageProps) {
@@ -29,8 +37,8 @@ export default async function Page({ searchParams }: PageProps) {
     <HydrationBoundary state={dehydratedState}>
       <ApplicationToolbar />
       <PageContent>
-        <ProductCard />
-        <RenderMetadata metadata={getMetadata({ variant: 'app', pathname: 'twitter-app' })} />
+        <ProductCard {...LIZARD_DATA} />
+        <RenderMetadata metadata={getMetadata({ variant: 'app', ...MetaDataConfig })} />
       </PageContent>
     </HydrationBoundary>
   );

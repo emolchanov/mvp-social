@@ -8,7 +8,7 @@ export function PageContent(props: PropsWithChildren) {
   return (
     <MUI.Container>
       <MUI.Stack
-        direction="column"
+        direction="row"
         justifyContent="center"
         alignContent="center"
         alignItems="center"

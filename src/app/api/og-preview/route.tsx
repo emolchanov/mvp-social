@@ -8,6 +8,7 @@ export const runtime = 'edge';
 export async function GET(request: NextRequest) {
   const title = request.nextUrl.searchParams.get('title');
   const content = request.nextUrl.searchParams.get('content');
+  const iconUrl = request.nextUrl.searchParams.get('icon') ?? '#';
   return new ImageResponse(
     (
       <div
@@ -27,7 +28,7 @@ export async function GET(request: NextRequest) {
         }}
       >
         <img
-          src="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+          src={iconUrl}
           style={{
             width: 200,
             height: 200,

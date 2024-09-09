@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import type { ResolvedTwitterMetadata } from 'next/dist/lib/metadata/types/twitter-types';
 
+import { generateImage } from './generate-image';
+import { getBaseUrl } from './get-base-url';
+
 interface GetMetadataParams {
   variant: ResolvedTwitterMetadata['card'];
   title: string;
@@ -10,23 +13,11 @@ interface GetMetadataParams {
   hash: string;
 }
 
-const BASE_URL = process.env.PRIMARY_DOMAIN ? `https://${process.env.PRIMARY_DOMAIN}` : '';
-
-function getImage(params: { title: string; description: string; icon: string; hash: string }) {
-  return {
-    url: `${BASE_URL}/api/og-preview?t=${params.hash}&title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}`,
-    secureUrl: `${BASE_URL}/api/og-preview?t=${params.hash}&title=${encodeURIComponent(params.title)}&content=${encodeURIComponent(params.description)}&icon=${encodeURIComponent(params.icon)}`,
-    type: 'image/jpeg',
-    width: 843,
-    height: 441,
-    alt: `${params.title}: ${params.description.slice(0, 25)}`,
-  };
-}
-
 export function getMetadata(params: GetMetadataParams): Metadata {
   const variant = params.variant ?? 'summary_large_image';
   const title = params.title ?? 'Title';
   const description = params.description ?? 'Description';
+  const baseUrl = getBaseUrl();
   return {
     title,
     description,
@@ -37,8 +28,8 @@ export function getMetadata(params: GetMetadataParams): Metadata {
       type: 'website',
       determiner: 'auto',
       siteName: 'mvp-social',
-      url: `${BASE_URL}${params.pathname}`,
-      images: getImage({ title, description, icon: params.image, hash: params.hash }),
+      url: `${baseUrl}${params.pathname}`,
+      images: generateImage({ title, description, icon: params.image, hash: params.hash }),
     },
     facebook: {
       appId: `${process.env.FB_APP_ID}`,
@@ -66,7 +57,7 @@ export function getMetadata(params: GetMetadataParams): Metadata {
             description,
             site: '@jackxsim',
             creator: '@jackxsim',
-            images: getImage({ title, description, icon: params.image, hash: params.hash }),
+            images: generateImage({ title, description, icon: params.image, hash: params.hash }),
           },
   };
 }

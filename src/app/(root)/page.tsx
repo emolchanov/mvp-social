@@ -6,7 +6,8 @@ import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
 import { ApplicationToolbar } from '@/modules/application-toolbar';
 import { HOME_DATA, HORSE_DATA, LIZARD_DATA } from '@/modules/content';
-import { getMetadata, getMetadataHash, RenderMetadata } from '@/modules/metadata';
+import { getMetadataHash, RenderMetadata } from '@/modules/metadata';
+import { getStaticMetadata } from '@/modules/metadata/get-static-metadata';
 
 import { PageContent } from '@/shared/components/page-content';
 import { PageFooter } from '@/shared/components/page-footer';
@@ -21,7 +22,7 @@ export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
   const hash = getMetadataHash();
-  return getMetadata({ variant: 'summary_large_image', ...HOME_DATA, hash });
+  return getStaticMetadata({ variant: 'summary_large_image', ...HOME_DATA, hash });
 }
 
 export default async function Page({ searchParams }: PageProps) {
@@ -37,7 +38,7 @@ export default async function Page({ searchParams }: PageProps) {
         <ProductCard {...HORSE_DATA} pathname={HORSE_DATA.pathname + `?t=${hash}`} />
       </PageContent>
       <PageFooter>
-        <RenderMetadata metadata={getMetadata({ variant: 'summary_large_image', ...HOME_DATA, hash })} />
+        <RenderMetadata metadata={getStaticMetadata({ variant: 'summary_large_image', ...HOME_DATA, hash })} />
       </PageFooter>
     </HydrationBoundary>
   );
